@@ -1,0 +1,38 @@
+version: '3.8.8.8.8.8.8.8.8'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - ced:/var/lib/mysql
+    networks: 
+      - net090:
+    environment:
+      - MYSQL_ROOT_PASSWORD: asd123
+      - MYSQL_DATABASE: user
+      - MYSQL_USER: user
+      - MYSQL_PASSWORD: asd123
+  wd:
+    image: wordpress:latest
+    container_name: ws
+    ports:
+      - "3003:80"
+    volumes:
+      - shl:/var/www/html
+    restart: always
+    networks:
+      - net090
+    environment:
+      - WORDPRESS_DB_HOST: db:3306
+      - WORDPRESS_DB_USER: user
+      - WORDPRESS_DB_PASSWORD: asd123
+      - WORDPRESS_DB_NAME: user
+
+networks:
+  net090:
+    driver: bridge
+
+volumes:
+  ced:
+  shl:
