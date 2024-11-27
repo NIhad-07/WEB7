@@ -1,31 +1,29 @@
-version: '3.8'
+version: '3'
 
 services:
   wordpress:
     image: wordpress:latest
-    container_name: wordpress
+    restart: always
     ports:
-      - "8084:80"
+      - "9050:80"  
     environment:
-      WORDPRESS_DB_HOST: mysql:3306
-      WORDPRESS_DB_NAME: nihad
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: nihad
-      WORDPRESS_DB_PASSWORD: asd123
+      WORDPRESS_DB_PASSWORD: password
     volumes:
       - wordpress_data:/var/www/html
 
-  mysql:
+  db:
     image: mysql:5.7
-    container_name: mysql
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: asd123
-      MYSQL_DATABASE: nihad
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress
       MYSQL_USER: nihad
-      MYSQL_PASSWORD: asd123
+      MYSQL_PASSWORD: password
     volumes:
       - db_data:/var/lib/mysql
-    ports:
-      - "9050:3306"
 
 volumes:
   wordpress_data:
