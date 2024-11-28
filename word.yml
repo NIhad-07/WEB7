@@ -5,7 +5,7 @@ services:
     image: wordpress:latest
     restart: always
     ports:
-      - "9050:80"
+      - "9060:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: wordpress
