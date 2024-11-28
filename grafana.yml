@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3030:3000"  # Default Grafana port
+    volumes:
+      - grafana_data:/var/lib/grafana  # Persistent storage
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin  # Default admin username
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Default admin password
+    networks:
+      - custom_network
+
+volumes:
+  grafana_data:
+
+networks:
+  custom_network:
+    driver: bridge
